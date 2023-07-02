@@ -3,18 +3,24 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const Modal = ({ largeImageURL, closeModal }) => {
-  const handleKeyDown = (ev) => {
-    if (ev.code === 'Escape') {
-      closeModal();
-    }
-  };
+  // const handleKeyDown = (ev) => {
+  //   if (ev.key === 'Escape') {
+  //     closeModal();
+  //   }
+  // };
 
   useEffect(() => {
+    const handleKeyDown = (ev) => {
+      if (ev.key === 'Escape') {
+        closeModal();
+      }
+    };
+
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [closeModal]);
 
   return (
     <div className='Overlay' onClick={closeModal}>
@@ -31,6 +37,36 @@ Modal.propTypes = {
 };
 
 export default Modal;
+
+// const Modal = ({ largeImageURL, closeModal }) => {
+//   const handleKeyDown = (ev) => {
+//     if (ev.code === 'Escape') {
+//       closeModal();
+//     }
+//   };
+
+//   useEffect(() => {
+//     window.addEventListener('keydown', handleKeyDown);
+//     return () => {
+//       window.removeEventListener('keydown', handleKeyDown);
+//     };
+//   }, []);
+
+//   return (
+//     <div className='Overlay' onClick={closeModal}>
+//       <div className='Modal'>
+//         <img src={largeImageURL} alt="" />
+//       </div>
+//     </div>
+//   );
+// };
+
+// Modal.propTypes = {
+//   largeImageURL: PropTypes.string,
+//   closeModal: PropTypes.func,
+// };
+
+// export default Modal;
 
 // export default class Modal extends Component {
 //   static propTypes = {

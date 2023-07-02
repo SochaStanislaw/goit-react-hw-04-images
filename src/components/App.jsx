@@ -13,15 +13,9 @@ const App = () => {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
   const [totalPages, setTotalPages] = useState(0);
   const [largeImageURL, setlargeImageURL] = useState('');
-
-  useEffect(() => {
-    if (query) {
-      getImages();
-    }
-  }, [query]);
 
   const getImages = () => {
     setLoading(true);
@@ -52,6 +46,12 @@ const App = () => {
   const closeModal = () => {
     setlargeImageURL('');
   };
+
+  useEffect(() => {
+    if (query) {
+      getImages();
+    }
+  }, [query]);
   
   return (
     <div className='App'>
